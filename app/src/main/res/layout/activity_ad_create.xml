@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <include layout="@layout/toolbar" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#eef4ff">
+
+        <!-- bottom -->
+        <TextView
+            android:id="@+id/textViewSubmit"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_component"
+            android:background="@color/colorButtonGreen"
+            android:foreground="?attr/selectableItemBackground"
+            android:text="@string/text_save_ad"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_size_toolbar_title"
+            android:layout_alignParentBottom="true"
+            android:textAppearance="@style/TextAppearance_FontPathOpenSansBold"/>
+
+        <!-- center -->
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            android:layout_above="@id/textViewSubmit">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="@dimen/padding_global_half"
+                android:focusableInTouchMode="true">
+
+                <!-- name -->
+
+                <!-- category -->
+                <android.support.v7.widget.CardView
+                    android:id="@+id/cardNome"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    app:cardCornerRadius="0dp"
+                    app:cardElevation="1dp"
+                    app:cardUseCompatPadding="false"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textView13"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:background="#dddddd"
+                            android:gravity="center|left"
+                            android:paddingLeft="5dp"
+                            android:text="Nome Evento"
+                            android:textColor="#000000"
+                            android:textSize="20dp"
+                            android:textStyle="bold"
+
+
+                            />
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:theme="@style/TextInputLayoutOnWhite">
+
+                            <EditText
+                                android:id="@+id/editTextName"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="text|textCapWords"
+                                android:maxLines="1"
+                                android:textColor="@android:color/black"
+                                android:theme="@style/EditText"
+                                app:backgroundTint="@color/colorPrimary" />
+
+                        </android.support.design.widget.TextInputLayout>
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <!-- typology -->
+                <android.support.v7.widget.CardView
+                    android:id="@+id/cardCategoria"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="10dp"
+                    app:cardCornerRadius="0dp"
+                    app:cardElevation="1dp"
+                    app:cardUseCompatPadding="false"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textView2"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:background="#dddddd"
+                            android:gravity="center|left"
+                            android:paddingLeft="5dp"
+                            android:text="Categoria"
+                            android:textStyle="bold"
+                            android:textColor="#000000"
+                            android:textSize="20dp"
+
+
+                            />
+
+                        <include
+                            layout="@layout/component_category"
+                            android:layout_width="match_parent" />
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <!-- date -->
+                <android.support.v7.widget.CardView
+                    android:id="@+id/cardTipologia"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textView"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:background="#dddddd"
+                            android:gravity="center|left"
+                            android:paddingLeft="5dp"
+                            android:text="Tipologia"
+                            android:textColor="#000000"
+                            android:textSize="20dp"
+                            android:textStyle="bold"
+
+
+                            />
+
+                        <include
+                            layout="@layout/component_typology"
+                            android:layout_width="match_parent" />
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <!-- images -->
+                <android.support.v7.widget.CardView
+                    android:id="@+id/cardData"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textView3"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:background="#dddddd"
+                            android:gravity="center|left"
+                            android:paddingLeft="5dp"
+                            android:text="Data"
+                            android:textStyle="bold"
+                            android:textColor="#000000"
+                            android:textSize="20dp"
+
+
+                            />
+
+                        <include
+                            layout="@layout/component_date"
+                            android:layout_width="match_parent" />
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/cardImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textView21"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:background="#dddddd"
+                            android:gravity="center|left"
+                            android:paddingLeft="5dp"
+                            android:text="Carica Immagine"
+                            android:textColor="#000000"
+                            android:textSize="20dp"
+                            android:textStyle="bold"
+
+
+                            />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="2">
+
+                            <TextView
+                                android:id="@+id/textViewGallery"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@android:color/white"
+                                android:foreground="?attr/selectableItemBackground"
+                                android:gravity="center"
+                                android:text="@string/text_gallery_images"
+                                android:textColor="@color/colorPrimary" />
+
+                            <TextView
+                                android:id="@+id/textViewCamera"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@android:color/white"
+                                android:foreground="?attr/selectableItemBackground"
+                                android:gravity="center"
+                                android:text="@string/text_camera_images"
+                                android:textColor="@color/colorPrimary" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <!-- hashtags -->
+                <android.support.v7.widget.CardView
+                    android:id="@+id/cardHashtag"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/Hashtag"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:background="#dddddd"
+                            android:gravity="center|left"
+                            android:paddingLeft="5dp"
+                            android:text="Hashtag"
+                            android:textStyle="bold"
+                            android:textColor="#000000"
+                            android:textSize="20dp"
+
+
+                            />
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:theme="@style/TextInputLayoutOnWhite">
+
+                            <EditText
+                                android:id="@+id/editTextHashTags"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="text|textCapWords"
+                                android:maxLines="1"
+                                android:textColor="@android:color/black"
+                                android:theme="@style/EditText"
+                                app:backgroundTint="@color/colorPrimary" />
+
+                        </android.support.design.widget.TextInputLayout>
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <!-- city -->
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/cardCitta"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textView10"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:background="#dddddd"
+                            android:gravity="center|left"
+                            android:paddingLeft="5dp"
+                            android:text="Citta"
+                            android:textStyle="bold"
+                            android:textColor="#000000"
+                            android:textSize="20dp"
+
+
+                            />
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:theme="@style/TextInputLayoutOnWhite">
+
+                            <EditText
+                                android:id="@+id/editTextCity"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="text|textCapWords"
+                                android:maxLines="1"
+                                android:textColor="@android:color/black"
+                                android:theme="@style/EditText"
+                                app:backgroundTint="@color/colorPrimary" />
+
+                        </android.support.design.widget.TextInputLayout>
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <!-- address -->
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/cardIndirizzo"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:background="#dddddd"
+                            android:gravity="center|left"
+                            android:paddingLeft="5dp"
+                            android:text="Indirizzo"
+                            android:textStyle="bold"
+                            android:textColor="#000000"
+                            android:textSize="20dp"
+
+
+                            />
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:theme="@style/TextInputLayoutOnWhite">
+
+                            <EditText
+                                android:id="@+id/editTextAddress"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="text|textCapWords"
+                                android:maxLines="1"
+                                android:textColor="@android:color/black"
+                                android:theme="@style/EditText"
+                                app:backgroundTint="@color/colorPrimary" />
+
+                        </android.support.design.widget.TextInputLayout>
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </RelativeLayout>
+
+</LinearLayout>

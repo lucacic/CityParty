@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/toolbar" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/textViewFilter"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_component"
+            android:background="@color/colorButtonOrange"
+            android:foreground="?attr/selectableItemBackground"
+            android:text="@string/text_filter_ads"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_size_toolbar_title"
+            android:layout_alignParentBottom="true"
+            android:textAppearance="@style/TextAppearance_FontPathOpenSansBold"/>
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            app:tabIndicatorColor="@color/colorButton"
+            app:tabSelectedTextColor="@android:color/white"
+            app:tabTextColor="@android:color/white"
+            app:tabMode="fixed"
+            app:tabGravity="fill"/>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/tabs"
+            android:layout_above="@id/textViewFilter"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

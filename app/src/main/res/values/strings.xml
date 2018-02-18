@@ -1,0 +1,60 @@
+<resources>
+    <string name="app_name">CityParty</string>
+
+    <string name="text_username">Username</string>
+    <string name="text_password">Password</string>
+    <string name="text_login_button">Entra</string>
+    <string name="text_on_error_title">Errore</string>
+    <string name="text_on_error_message">Connessione con il server centrale persa</string>
+    <string name="text_on_error_button">Va bene</string>
+    <string name="text_open_gps_settings">Aprire le impostazioni GPS?</string>
+    <string name="text_yes">Si</string>
+    <string name="text_no">No</string>
+    <string name="text_cancel">Annulla</string>
+    <string name="text_logout_title">Esci</string>
+    <string name="text_logout_message">Vuoi uscire dall\'applicazione?</string>
+    <string name="text_required">Obbligatorio</string>
+    <string name="progress_dialog_sign_in">Login in corso...</string>
+    <string name="text_logout">Esci</string>
+    <string name="text_alert_dialog_logout">Sei sicuro di voler uscire?</string>
+    <string name="text_tab_home">home</string>
+    <string name="text_tab_categories">categorie</string>
+    <string name="text_tab_profile">profilo</string>
+    <string name="text_become_advertiser">Diventa inserzionista</string>
+    <string name="email_contact_to">luigi.casciaro91@gmail.com</string>
+    <string name="email_subject">Voglio diventare inserzionista</string>
+    <string name="email_send_with">Invia email con</string>
+    <string name="text_search">Cerca...</string>
+    <string name="text_filter_ads">Filtra annunci</string>
+    <string name="text_apply_filters">Applica filtri</string>
+    <string name="text_filter_ad">Filtra annunci</string>
+    <string name="text_reset">Reset</string>
+    <string name="text_free">Libero</string>
+    <string name="text_paid">A pagamento</string>
+    <string name="text_all">Tutti</string>
+    <string name="text_date">Data</string>
+    <string name="title_details_party">Sabato Notte Life, #Epiphany, Sabato 6 Gennaio</string>
+    <string name="details_text">"SABATO NOTTE LIFE - EPIPHANY\n\nPer una notte Upside Torino presenta lo Special Party per la festa dell\'epifania.. Animazione
+e Staff a tema, sexy befane e gadget in serata.. Tavoli pista + Tavoli Privè esclusivi disponibili !\n\nDiscoteca Life Torino presenta #UPSIDE !\n\nL\'appuntamento che la movida torinese stava aspettando è finalmente arrivato.
+Il nuovo format studiato appositamente per stravolgere la concezione di vivere la notte !\n\nOgni sabato un party a tema differente.
+Due sale aperte con la selezione musicale del momento..\n\n#PRICE\n\nDonna : Ingresso con Drink 5 €
+Uomo : Ingresso con Drink : 10 €\n\nSUCCESSIVE DRINK (FACOLTATIVE) : 5 €\n\n#TABLES\n\nDistillati (Vodka, Rhum, Gin) : 80 € - 5 pass
+Premium / Champagne / Belvedere : 100 € - 5 pass\n\n#MUSIC\n\nSala 1 : Dance / Commerciale / House
+Music by : Felix Barbieri DJ - Simon Finix DJ\n\nSala 2 : SHAKY SHAKY (Reggaeton / Hip Hop)
+Music by : D.j. Maurizio Cinardo\n\n#INFO RESERVATIONS\n\n✆ 3460470058 (Whatsapp available)\n\nE' richiesto un abbigliamento adeguato al contesto elegante, il locale si
+riserva di attuare selezione all\'ingresso."</string>
+    <string name="text_register_button">Registrati</string>
+    <string name="text_create_ad">Nuovo annuncio</string>
+    <string name="text_save_ad">Salva annuncio</string>
+    <string name="text_name">Nome</string>
+    <string name="text_category">Categoria</string>
+    <string name="text_select_category">Scegli categoria</string>
+    <string name="text_select_typology">Scegli tipologia</string>
+    <string name="text_typology">Tipologia</string>
+    <string name="text_images">Scegli immagini</string>
+    <string name="text_hash_tags">Hashtags separati da virgola</string>
+    <string name="text_city">Città</string>
+    <string name="text_address">Indirizzo</string>
+    <string name="text_gallery_images">Immagini da galleria</string>
+    <string name="text_camera_images">Immagini da fotocamera</string>
+</resources>

@@ -1,0 +1,24 @@
+<resources>
+
+    <!-- DEVICE: all -->
+
+    <!-- text -->
+    <dimen name="text_size">14sp</dimen>
+    <dimen name="text_size_toolbar_title">16sp</dimen>
+    <dimen name="text_size_button_small">10sp</dimen>
+    <dimen name="text_size_edit_text">12sp</dimen>
+
+    <!-- padding + margin -->
+    <dimen name="padding_global">16dp</dimen>
+    <dimen name="padding_global_half">8dp</dimen>
+    <dimen name="activity_margin">16dp</dimen>
+    <dimen name="activity_margin_half">8dp</dimen>
+
+    <!-- component -->
+    <dimen name="height_component">50dp</dimen>
+    <dimen name="height_card_store">90dp</dimen>
+
+    <!-- card -->
+    <dimen name="card_elevation">2dp</dimen>
+
+</resources>

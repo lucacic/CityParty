@@ -1,0 +1,90 @@
+// android
+apply plugin: 'com.android.application'
+// retrolambda
+apply plugin: 'me.tatarka.retrolambda'
+// realm database
+apply plugin: 'realm-android'
+
+android {
+
+    compileSdkVersion 26
+    buildToolsVersion "27.0.3"
+
+    defaultConfig {
+        applicationId "luigi.casciaro.cityparty"
+        minSdkVersion 21
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+    }
+
+    applicationVariants.all { variant ->
+        variant.resValue "string", "versionName", variant.versionName
+    }
+
+    buildTypes {
+
+        debug {
+
+            // user used for testing
+            buildConfigField "String", "DEFAULT_USER", "\"inserzionista@gmail.com\""
+            buildConfigField "String", "DEFAULT_PASSWORD", "\"password\""
+
+            // configurations
+            buildConfigField "int", "SPLASH_TIME_OUT", "1500"
+        }
+
+        release {
+
+            // user used for testing
+            buildConfigField "String", "DEFAULT_USER", ""
+            buildConfigField "String", "DEFAULT_PASSWORD", ""
+
+            // configurations
+            buildConfigField "int", "SPLASH_TIME_OUT", "1500"
+
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    // standard google
+    compile 'com.android.support:appcompat-v7:26.0.1'
+    compile 'com.android.support:support-v4:26.0.1'
+    compile 'com.android.support:design:26.0.1'
+    compile 'com.android.support:cardview-v7:26.0.1'
+    compile 'com.android.support:recyclerview-v7:26.0.1'
+    compile 'com.google.android.gms:play-services-maps:11.8.0'
+    // |_ sign in
+    compile 'com.google.android.gms:play-services-auth:11.8.0'
+    // |_ firebase
+    compile 'com.google.firebase:firebase-core:11.8.0'
+    // |_ location
+    compile 'com.google.android.gms:play-services-location:11.8.0'
+    compile 'com.google.android.gms:play-services-places:11.8.0'
+    compile 'com.google.firebase:firebase-core:11.8.0'
+    // butterknife
+    compile 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    // glide
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+    // font
+    compile 'uk.co.chrisjenx:calligraphy:2.3.0'
+    // pinch to zoom
+    compile 'com.davemorrissey.labs:subsampling-scale-image-view:3.6.0'
+    // material date and time picker
+    compile 'com.wdullaer:materialdatetimepicker:3.3.1'
+    // image picker
+    compile 'com.kbeanie:image-chooser-library:1.6.0@aar'
+}
+
+// google services
+apply plugin: 'com.google.gms.google-services'

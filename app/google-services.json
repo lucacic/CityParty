@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1058714420161",
+    "firebase_url": "https://cityparty-8c722.firebaseio.com",
+    "project_id": "cityparty-8c722",
+    "storage_bucket": "cityparty-8c722.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1058714420161:android:d1c002e7e5d999de",
+        "android_client_info": {
+          "package_name": "luigi.casciaro.cityparty"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1058714420161-jdodtad3himcl6i74nteci4g651lhfhc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD0Js0E_YaMkNpA4RYAI5sJtGLihRvKIho"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
