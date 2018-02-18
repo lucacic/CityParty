@@ -104,14 +104,14 @@
                     app:srcCompat="@drawable/like_24dp" />
 
                 <ImageView
-                    android:id="@+id/imageView5"
+                    android:id="@+id/imageShare"
                     android:layout_width="wrap_content"
                     android:layout_height="35dp"
                     android:layout_weight="1"
                     app:srcCompat="@drawable/ic_share_black_24dp" />
 
                 <ImageView
-                    android:id="@+id/imageView6"
+                    android:id="@+id/imagePhone"
                     android:layout_width="wrap_content"
                     android:layout_height="35dp"
                     android:layout_weight="1"

@@ -24,7 +24,9 @@
                 android:text="@string/text_select_category"
                 android:focusableInTouchMode="false"
                 android:inputType="none"
-
+                android:fontFamily="sans-serif-condensed"
+                android:textSize="18dp"
+                android:paddingLeft="10dp"
                 app:backgroundTint="@color/colorEditTextSign" />
 
         </android.support.design.widget.TextInputLayout>

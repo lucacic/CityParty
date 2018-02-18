@@ -21,6 +21,9 @@
                 android:layout_height="match_parent"
                 android:textColor="@color/colorPrimary"
                 android:text="@string/text_select_typology"
+                android:fontFamily="sans-serif-condensed"
+                android:textSize="18dp"
+                android:paddingLeft="10dp"
                 android:focusableInTouchMode="false"
                 android:inputType="none"
                 app:backgroundTint="@color/colorEditTextSign" />
