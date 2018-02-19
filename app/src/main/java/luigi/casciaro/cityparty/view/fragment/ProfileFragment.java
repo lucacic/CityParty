@@ -19,11 +19,13 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import luigi.casciaro.cityparty.R;
 import luigi.casciaro.cityparty.adapter.AdAdapter;
+import luigi.casciaro.cityparty.contract.AdActionsContract;
+import luigi.casciaro.cityparty.model.Ad;
 import luigi.casciaro.cityparty.util.MyUtil;
 import luigi.casciaro.cityparty.view.AdCreateActivity;
 import luigi.casciaro.cityparty.view.MainActivity;
 
-public class ProfileFragment extends Fragment {
+public class ProfileFragment extends Fragment implements AdActionsContract {
 
     @BindView(R.id.root)
     RelativeLayout root;
@@ -70,19 +72,19 @@ public class ProfileFragment extends Fragment {
     }
 
     private void loadAdsPublished(){
-        adapterPublished = new AdAdapter(new ArrayList(MainActivity.userLogged.getPublished()), false, getActivity());
+        adapterPublished = new AdAdapter(new ArrayList(MainActivity.userLogged.getPublished()), false, this);
         recyclerViewAdPublished.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         recyclerViewAdPublished.setAdapter(adapterPublished);
     }
 
     private void loadAdsFavourites(){
-        adapterFavourites = new AdAdapter(new ArrayList(MainActivity.userLogged.getFavourites()), false, getActivity());
+        adapterFavourites = new AdAdapter(new ArrayList(MainActivity.userLogged.getFavourites()), false, this);
         recyclerViewAdFavourites.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         recyclerViewAdFavourites.setAdapter(adapterFavourites);
     }
 
     private void loadAdsLiked(){
-        adapterLiked = new AdAdapter(new ArrayList(MainActivity.userLogged.getLiked()), false, getActivity());
+        adapterLiked = new AdAdapter(new ArrayList(MainActivity.userLogged.getLiked()), false, this);
         recyclerViewAdLiked.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         recyclerViewAdLiked.setAdapter(adapterLiked);
     }
@@ -132,5 +134,20 @@ public class ProfileFragment extends Fragment {
 
         MyUtil.print("USER_LOGGED FAV -> " + MainActivity.userLogged.getFavourites().toString());
         MyUtil.print("USER_LOGGED LIK -> " + MainActivity.userLogged.getLiked().toString());
+    }
+
+    @Override
+    public void onCallPressed(Ad ad) {
+        // do nothing
+    }
+
+    @Override
+    public void onSharePressed(Ad ad) {
+        // do nothing
+    }
+
+    @Override
+    public void onSmilePressed(Ad ad) {
+        // do nothing
     }
 }

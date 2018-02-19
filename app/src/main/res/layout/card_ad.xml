@@ -101,20 +101,19 @@
                     android:weightSum="3">
 
                     <TextView
-                        android:id="@+id/textViewLike"
+                        android:id="@+id/textViewCall"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:layout_gravity="center"
                         android:gravity="center"
-                        android:text="Mi piace"
-                        android:textColor="#24638b"
+                        android:text="Chiama"
                         android:foreground="?attr/selectableItemBackground"
                         android:textSize="16dp"
-                        android:visibility="invisible"/>
+                        android:visibility="visible"/>
 
                     <TextView
-                        android:id="@+id/textView12"
+                        android:id="@+id/textViewShare"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"

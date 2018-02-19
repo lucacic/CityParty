@@ -1,7 +1,14 @@
 package luigi.casciaro.cityparty.view.fragment;
 
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -20,15 +27,19 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.realm.Realm;
 import luigi.casciaro.cityparty.R;
 import luigi.casciaro.cityparty.adapter.AdAdapter;
+import luigi.casciaro.cityparty.contract.AdActionsContract;
 import luigi.casciaro.cityparty.contract.AdsContract;
 import luigi.casciaro.cityparty.controller.RealmController;
 import luigi.casciaro.cityparty.model.Ad;
 import luigi.casciaro.cityparty.util.MyUtil;
 import luigi.casciaro.cityparty.view.MainActivity;
 
-public class HomeFragment extends Fragment implements AdsContract {
+public class HomeFragment extends Fragment implements AdsContract, AdActionsContract {
+
+    private static final int MAKE_CALL_PERMISSION_REQUEST_CODE = 1;
 
     @BindView(R.id.root)
     RelativeLayout root;
@@ -81,7 +92,7 @@ public class HomeFragment extends Fragment implements AdsContract {
     @Override
     public void onAdsLoaded(ArrayList<Ad> items) {
 
-        adapter = new AdAdapter(items, true, getActivity());
+        adapter = new AdAdapter(items, true, this);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         recyclerView.setAdapter(adapter);
 
@@ -94,6 +105,74 @@ public class HomeFragment extends Fragment implements AdsContract {
         Toast.makeText(mainActivity, error, Toast.LENGTH_SHORT).show();
     }
 
+    /**
+     * AdActionsContract
+     */
+    @Override
+    public void onCallPressed(Ad ad) {
+        if (checkPermission(Manifest.permission.CALL_PHONE)) {
+            startActivity(new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + ad.getNumberPhone())));
+        } else {
+            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.CALL_PHONE}, MAKE_CALL_PERMISSION_REQUEST_CODE);
+
+        }
+    }
+
+    @Override
+    public void onSharePressed(Ad ad) {
+        Intent myIntent = new Intent(Intent.ACTION_SEND);
+        myIntent.setType("text/plain");
+        String shareBody = ad.getDescriptionEvent();
+        String shareSub ="Subject here";
+        myIntent.putExtra(Intent.EXTRA_SUBJECT, shareSub);
+        myIntent.putExtra(Intent.EXTRA_TEXT, shareBody);
+        startActivity(Intent.createChooser(myIntent, "Share using"));
+    }
+
+    @Override
+    public void onSmilePressed(Ad ad) {
+        // favourite?
+        if(MainActivity.userLogged.isInLiked(ad)){
+            // yes
+            // remove from liked
+            try(Realm r = Realm.getDefaultInstance()) {
+                r.executeTransaction((realm) -> {
+                    // write on realm refreshed data
+                    MainActivity.userLogged.removeFromLiked(ad);
+                    adapter.notifyDataSetChanged();
+                });
+            }
+        } else{
+            // no
+            // add to favourite
+            try(Realm r = Realm.getDefaultInstance()) {
+                r.executeTransaction((realm) -> {
+                    // write on realm refreshed data
+                    MainActivity.userLogged.getLiked().add(ad);
+                    adapter.notifyDataSetChanged();
+                });
+            }
+        }
+    }
+
+    /**
+     * Permissions
+     */
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case MAKE_CALL_PERMISSION_REQUEST_CODE:
+                Toast.makeText(getActivity(), "Adesso puoi effettuare la chiamata!", Toast.LENGTH_SHORT).show();
+                return;
+        }
+    }
+
+    private boolean checkPermission(String permission) {
+        return ContextCompat.checkSelfPermission(getActivity(), permission) == PackageManager.PERMISSION_GRANTED;
+    }
+
+    /**
+     * Menu
+     */
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);

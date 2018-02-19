@@ -21,7 +21,7 @@ public class ViewHolderShopAdapter extends RecyclerView.ViewHolder {
     public ImageView imageViewAvatar;
 
     @BindView(R.id.imageViewFavourite)
-    public ImageView imageViewFavourite;
+    public ImageView imageViewSmile;
 
     @BindView(R.id.textViewName)
     public TextView textViewName;
@@ -32,8 +32,11 @@ public class ViewHolderShopAdapter extends RecyclerView.ViewHolder {
     @BindView(R.id.textViewDate)
     public TextView textViewDate;
 
-    @BindView(R.id.textViewLike)
-    public TextView textViewLike;
+    @BindView(R.id.textViewCall)
+    public TextView textViewCall;
+
+    @BindView(R.id.textViewShare)
+    public TextView textViewShare;
 
     public ViewHolderShopAdapter(View v) {
         super(v);

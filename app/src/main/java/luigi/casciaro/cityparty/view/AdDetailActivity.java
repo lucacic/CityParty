@@ -23,8 +23,6 @@ import luigi.casciaro.cityparty.util.MyUtil;
 public class AdDetailActivity extends BaseActivity implements AdActionsContract {
 
     Ad ad;
-    String phone;
-    String details;
     boolean isLiked = false;
     private static final int MAKE_CALL_PERMISSION_REQUEST_CODE = 1;
 
@@ -34,15 +32,13 @@ public class AdDetailActivity extends BaseActivity implements AdActionsContract 
         setContentView(R.layout.activity_ad_detail);
 
         ad = AppController.getInstance().getCurrentAd();
-        phone = ad.getNumberPhone();
-        details = ad.getDescriptionEvent();
 
         MyUtil.setToolbar(this, ad.getName());
 
         // set
         findViewById(R.id.imageView).setBackground(ContextCompat.getDrawable(this, ad.getImage()));
-        ((TextView) findViewById(R.id.textViewTitle)).setText(details);
-        ((TextView) findViewById(R.id.textViewTitle2)).setText(details);
+        ((TextView) findViewById(R.id.textViewTitle)).setText(ad.getDescriptionEvent());
+        ((TextView) findViewById(R.id.textViewTitle2)).setText(ad.getDescriptionEvent());
         ((TextView) findViewById(R.id.textViewTextDetails)).setText(ad.getEventType_toString());
         ((TextView) findViewById(R.id.textViewAddress)).setText(ad.getAddress());
         ((TextView) findViewById(R.id.textViewAddress2)).setText(ad.getAddress());
@@ -50,7 +46,6 @@ public class AdDetailActivity extends BaseActivity implements AdActionsContract 
         ((TextView) findViewById(R.id.textViewDate)).setText(ad.getDate_toString());
         ((TextView) findViewById(R.id.textViewMese)).setText(ad.getMonthName());
         ((TextView) findViewById(R.id.textViewGiorno)).setText(ad.getDay());
-        ((TextView) findViewById(R.id.textViewParticipants)).setText("12"); // TODO: 19/02/18
         ((TextView) findViewById(R.id.textViewLikedBy)).setText("68"); // TODO: 19/02/18
 
         // favourite?
@@ -70,18 +65,6 @@ public class AdDetailActivity extends BaseActivity implements AdActionsContract 
         findViewById(R.id.imageShare).setOnClickListener(view -> onSharePressed(ad));
     }
 
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        switch (requestCode) {
-            case MAKE_CALL_PERMISSION_REQUEST_CODE:
-                Toast.makeText(this, "Adesso puoi effettuare la chiamata!", Toast.LENGTH_SHORT).show();
-                return;
-        }
-    }
-
-    private boolean checkPermission(String permission) {
-        return ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_GRANTED;
-    }
-
     void goToMaps(){
         Uri gmmIntentUri = Uri.parse("google.streetview:cbll="+ad.getLatitude()+","+ad.getLongitude());
         Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
@@ -95,7 +78,9 @@ public class AdDetailActivity extends BaseActivity implements AdActionsContract 
         return super.onOptionsItemSelected(item);
     }
 
-
+    /**
+     * AdActionsContract
+     */
     @Override
     public void onCallPressed(Ad ad) {
         if (checkPermission(Manifest.permission.CALL_PHONE)) {
@@ -110,7 +95,7 @@ public class AdDetailActivity extends BaseActivity implements AdActionsContract 
     public void onSharePressed(Ad ad) {
         Intent myIntent = new Intent(Intent.ACTION_SEND);
         myIntent.setType("text/plain");
-        String shareBody = details;
+        String shareBody = ad.getDescriptionEvent();
         String shareSub ="Subject here";
         myIntent.putExtra(Intent.EXTRA_SUBJECT, shareSub);
         myIntent.putExtra(Intent.EXTRA_TEXT, shareBody);
@@ -144,5 +129,20 @@ public class AdDetailActivity extends BaseActivity implements AdActionsContract 
                 });
             }
         }
+    }
+
+    /**
+     * Permissions
+     */
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case MAKE_CALL_PERMISSION_REQUEST_CODE:
+                Toast.makeText(this, "Adesso puoi effettuare la chiamata!", Toast.LENGTH_SHORT).show();
+                return;
+        }
+    }
+
+    private boolean checkPermission(String permission) {
+        return ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_GRANTED;
     }
 }
