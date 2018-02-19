@@ -140,6 +140,14 @@ public class Ad extends RealmObject {
         return "Dal " + from + " al " + to;
     }
 
+    public String getMonthName() {
+        return MyDateUtil.getMonthName(dateFrom).toUpperCase();
+    }
+
+    public String getDay() {
+        return MyDateUtil.getDateArrayFromDate(dateFrom)[0];
+    }
+
     public int getImage() {
         return image;
     }

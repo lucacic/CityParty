@@ -3,6 +3,7 @@ package luigi.casciaro.cityparty.util;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 import luigi.casciaro.cityparty.AppController;
@@ -11,6 +12,21 @@ public class MyDateUtil {
 
     private static String[] dateToday = getTodayDateArray();
     private static Date dateNow;
+
+    /**
+     * Stringa "Mese Anno"
+     * @return "Giugno 2017"
+     */
+    public static String getMonthName(Date date){
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        // get name
+        String nameOfCurrentMonth = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.ITALY);
+        // upper case first char
+        nameOfCurrentMonth = nameOfCurrentMonth.substring(0,1).toUpperCase() + nameOfCurrentMonth.substring(1).toLowerCase();
+        // return
+        return nameOfCurrentMonth.substring(0,3);
+    }
 
     /**
      * Get an array with today date
