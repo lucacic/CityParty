@@ -29,3 +29,5 @@ data/immagini
 build
 *.iml
 .idea
+
+local.properties
