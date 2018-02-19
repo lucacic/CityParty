@@ -14,6 +14,9 @@ public class ViewHolderShopAdapter extends RecyclerView.ViewHolder {
     @BindView(R.id.root)
     public View root;
 
+    @BindView(R.id.viewActions)
+    public View viewActions;
+
     @BindView(R.id.imageViewAvatar)
     public ImageView imageViewAvatar;
 

@@ -25,13 +25,13 @@ public class AdAdapter extends RecyclerView.Adapter<ViewHolderShopAdapter> imple
 
     public ArrayList<Ad> items, itemsBck;
     private Activity owner;
-    private boolean manageFavourites;
+    private boolean manageActions;
 
-    public AdAdapter(ArrayList<Ad> items, boolean manageFavourites, Activity activityParent) {
+    public AdAdapter(ArrayList<Ad> items, boolean manageActions, Activity activityParent) {
         this.items = items;
         this.itemsBck = items;
         this.owner = activityParent;
-        this.manageFavourites = manageFavourites;
+        this.manageActions = manageActions;
     }
 
     @Override
@@ -50,14 +50,15 @@ public class AdAdapter extends RecyclerView.Adapter<ViewHolderShopAdapter> imple
         viewHolder.textViewDate.setText(items.get(position).getDate_toString());
         viewHolder.textViewAddress.setText(items.get(position).getAddress());
 
-        if(manageFavourites) {
+        if(manageActions) {
             // show
-            viewHolder.imageViewFavourite.setVisibility(View.VISIBLE);
+            viewHolder.viewActions.setVisibility(View.VISIBLE);
+
             // check
             if (isFavourite[0])
-                viewHolder.imageViewFavourite.setImageDrawable(ContextCompat.getDrawable(AppController.getInstance(), R.drawable.ic_favourite_active));
+                viewHolder.imageViewFavourite.setImageDrawable(ContextCompat.getDrawable(AppController.getInstance(), R.drawable.like_active_24dp));
             else
-                viewHolder.imageViewFavourite.setImageDrawable(ContextCompat.getDrawable(AppController.getInstance(), R.drawable.ic_favourite));
+                viewHolder.imageViewFavourite.setImageDrawable(ContextCompat.getDrawable(AppController.getInstance(), R.drawable.like_24dp));
 
             // like check
             if (isLiked[0])
@@ -67,7 +68,7 @@ public class AdAdapter extends RecyclerView.Adapter<ViewHolderShopAdapter> imple
 
         }else{
             // hide
-            viewHolder.imageViewFavourite.setVisibility(View.GONE);
+            viewHolder.viewActions.setVisibility(View.GONE);
         }
 
         viewHolder.imageViewAvatar.setBackground(ContextCompat.getDrawable(AppController.getInstance().getApplicationContext(), items.get(position).getImage()));
@@ -84,7 +85,7 @@ public class AdAdapter extends RecyclerView.Adapter<ViewHolderShopAdapter> imple
             // favourite?
             if(isFavourite[0]){
                 // yes
-                viewHolder.imageViewFavourite.setImageDrawable(ContextCompat.getDrawable(AppController.getInstance(), R.drawable.ic_favourite));
+                viewHolder.imageViewFavourite.setImageDrawable(ContextCompat.getDrawable(AppController.getInstance(), R.drawable.like_24dp));
                 isFavourite[0] = false;
                 // remove from favourite
                 try(Realm r = Realm.getDefaultInstance()) {
@@ -95,7 +96,7 @@ public class AdAdapter extends RecyclerView.Adapter<ViewHolderShopAdapter> imple
                 }
             } else{
                 // no
-                viewHolder.imageViewFavourite.setImageDrawable(ContextCompat.getDrawable(AppController.getInstance(), R.drawable.ic_favourite_active));
+                viewHolder.imageViewFavourite.setImageDrawable(ContextCompat.getDrawable(AppController.getInstance(), R.drawable.like_active_24dp));
                 isFavourite[0] = true;
                 // add to favourite
                 try(Realm r = Realm.getDefaultInstance()) {
