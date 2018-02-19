@@ -34,6 +34,12 @@ public class ProfileFragment extends Fragment {
     @BindView(R.id.viewAdPublished)
     View viewAdPublished;
 
+    @BindView(R.id.viewAdFavourites)
+    View viewAdFavourites;
+
+    @BindView(R.id.viewAdLiked)
+    View viewAdLiked;
+
     @BindView(R.id.textViewEmail)
     TextView textViewEmail;
 
@@ -105,11 +111,20 @@ public class ProfileFragment extends Fragment {
         if(MainActivity.userLogged.isAdvertiser()){
             // yes
             viewAdPublished.setVisibility(View.VISIBLE);
+            viewAdLiked.setVisibility(View.VISIBLE);
             fab.setVisibility(View.VISIBLE);
+
+            MyUtil.print("USER_LOGGED PUB -> " + MainActivity.userLogged.getPublished().toString());
 
             loadAdsPublished();
 
-            MyUtil.print("USER_LOGGED PUB -> " + MainActivity.userLogged.getPublished().toString());
+        }else{
+            // no
+            viewAdPublished.setVisibility(View.GONE);
+            viewAdLiked.setVisibility(View.VISIBLE);
+            fab.setVisibility(View.GONE);
+
+            MyUtil.print("USER_LOGGED IS A CUSTOMER");
         }
 
         loadAdsFavourites();
