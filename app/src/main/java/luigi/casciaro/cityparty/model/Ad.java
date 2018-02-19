@@ -32,11 +32,13 @@ public class Ad extends RealmObject {
     public String dateToString;
     public int image;
     public RealmList<AdImage> images;
+    public String numberPhone;
+    public String descriptionEvent;
 
     // default for Realm
     public Ad() {}
 
-    public Ad(int id, String name, String city, Category category, Double latitude, Double longitude, String address, String eventType, Date dateFrom, Date dateTo, int image) {
+    public Ad(int id, String name, String city, Category category, Double latitude, Double longitude, String address, String eventType, Date dateFrom, Date dateTo, int image, String numberPhone, String descriptionEvent ) {
         this.id = id;
         this.name = name;
         this.category = category;
@@ -51,6 +53,24 @@ public class Ad extends RealmObject {
         this.image = image;
         this.dateFromString = MyDateUtil.getddMMYYYYFromDate(dateFrom);
         this.dateToString = MyDateUtil.getddMMYYYYFromDate(dateTo);
+        this.numberPhone = numberPhone;
+        this.descriptionEvent = descriptionEvent ;
+    }
+
+    public String getNumberPhone() {
+        return numberPhone;
+    }
+
+    public void setNumberPhone(String numberPhone) {
+        this.numberPhone = numberPhone;
+    }
+
+    public String getDescriptionEvent() {
+        return descriptionEvent;
+    }
+
+    public void setDescriptionEvent(String descriptionEvent) {
+        this.descriptionEvent = descriptionEvent;
     }
 
     public int getId() {

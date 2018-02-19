@@ -64,6 +64,12 @@ public class AdCreateActivity extends BaseActivity implements ImageChooserListen
     @BindView(R.id.editTextAddress)
     EditText editTextAddress;
 
+    @BindView(R.id.editTextPhone)
+    EditText editTextPhone;
+
+    @BindView(R.id.editTextDescrizion)
+    EditText editTextDescrizion;
+
     @BindView(R.id.textViewCamera)
     TextView textViewCamera;
 
@@ -174,6 +180,8 @@ public class AdCreateActivity extends BaseActivity implements ImageChooserListen
         adToCreate.setCity(editTextCity.getText().toString());
         adToCreate.setAddress(editTextAddress.getText().toString());
         adToCreate.setImage(R.drawable.background_discoteca);
+        adToCreate.setNumberPhone(editTextPhone.getText().toString());
+        adToCreate.setDescriptionEvent(editTextDescrizion.getText().toString());
 
         RealmController.addAdToPublisherUser(this, adToCreate);
     }
