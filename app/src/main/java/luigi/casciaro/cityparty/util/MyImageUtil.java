@@ -2,6 +2,7 @@ package luigi.casciaro.cityparty.util;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.util.DisplayMetrics;
 
 import java.io.ByteArrayOutputStream;
@@ -10,7 +11,13 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
+import luigi.casciaro.cityparty.R;
+
 public class MyImageUtil {
+
+    public static String getURLForResource(int resourceId) {
+        return Uri.parse("android.resource://"+R.class.getPackage().getName()+"/" +resourceId).toString();
+    }
 
     public static int pixelToDp(float pixelValue){
         DisplayMetrics displayMetrics = new DisplayMetrics();

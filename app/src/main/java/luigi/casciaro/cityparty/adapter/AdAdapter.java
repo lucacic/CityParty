@@ -63,7 +63,7 @@ public class AdAdapter extends RecyclerView.Adapter<ViewHolderShopAdapter> imple
             viewHolder.viewActions.setVisibility(View.GONE);
         }
 
-        viewHolder.imageViewAvatar.setBackground(ContextCompat.getDrawable(AppController.getInstance().getApplicationContext(), items.get(position).getImage()));
+        viewHolder.imageViewAvatar.setImageBitmap(items.get(position).getImage());
 
         // listener
         viewHolder.root.setOnClickListener(v -> {

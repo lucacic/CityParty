@@ -1,5 +1,7 @@
 package luigi.casciaro.cityparty.model;
 
+import android.graphics.Bitmap;
+
 import java.util.Date;
 
 import io.realm.RealmList;
@@ -8,6 +10,7 @@ import io.realm.annotations.PrimaryKey;
 import luigi.casciaro.cityparty.AppController;
 import luigi.casciaro.cityparty.R;
 import luigi.casciaro.cityparty.util.MyDateUtil;
+import luigi.casciaro.cityparty.util.MyImageUtil;
 
 public class Ad extends RealmObject {
 
@@ -30,7 +33,6 @@ public class Ad extends RealmObject {
     public String dateFromString;
     public Date dateTo;
     public String dateToString;
-    public int image;
     public RealmList<AdImage> images;
     public String numberPhone;
     public String descriptionEvent;
@@ -38,7 +40,7 @@ public class Ad extends RealmObject {
     // default for Realm
     public Ad() {}
 
-    public Ad(int id, String name, String city, Category category, Double latitude, Double longitude, String address, String eventType, Date dateFrom, Date dateTo, int image, String numberPhone, String descriptionEvent ) {
+    public Ad(int id, String name, String city, Category category, Double latitude, Double longitude, String address, String eventType, Date dateFrom, Date dateTo, String numberPhone, String descriptionEvent, RealmList<AdImage> images) {
         this.id = id;
         this.name = name;
         this.category = category;
@@ -50,7 +52,7 @@ public class Ad extends RealmObject {
         this.eventType = eventType;
         this.dateFrom = dateFrom;
         this.dateTo = dateTo;
-        this.image = image;
+        this.images = images;
         this.dateFromString = MyDateUtil.getddMMYYYYFromDate(dateFrom);
         this.dateToString = MyDateUtil.getddMMYYYYFromDate(dateTo);
         this.numberPhone = numberPhone;
@@ -148,8 +150,8 @@ public class Ad extends RealmObject {
         return MyDateUtil.getDateArrayFromDate(dateFrom)[0];
     }
 
-    public int getImage() {
-        return image;
+    public Bitmap getImage() {
+        return MyImageUtil.getBitmapFromByteArray(images.get(0).getImage());
     }
 
     public RealmList<AdImage> getImages() {
@@ -204,10 +206,6 @@ public class Ad extends RealmObject {
     public void setDateTo(Date dateTo) {
         this.dateTo = dateTo;
         this.dateToString = MyDateUtil.getddMMYYYYFromDate(dateTo);
-    }
-
-    public void setImage(int image) {
-        this.image = image;
     }
 
     public String getHashTags() {

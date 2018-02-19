@@ -1,9 +1,12 @@
 package luigi.casciaro.cityparty.controller;
 
+import android.graphics.BitmapFactory;
+
 import java.util.ArrayList;
 import java.util.Date;
 
 import io.realm.Realm;
+import io.realm.RealmList;
 import io.realm.RealmQuery;
 import io.realm.RealmResults;
 import luigi.casciaro.cityparty.AppController;
@@ -11,9 +14,11 @@ import luigi.casciaro.cityparty.R;
 import luigi.casciaro.cityparty.contract.AdCreateContract;
 import luigi.casciaro.cityparty.contract.AdsContract;
 import luigi.casciaro.cityparty.model.Ad;
+import luigi.casciaro.cityparty.model.AdImage;
 import luigi.casciaro.cityparty.model.Category;
 import luigi.casciaro.cityparty.model.User;
 import luigi.casciaro.cityparty.util.MyDateUtil;
+import luigi.casciaro.cityparty.util.MyImageUtil;
 
 public class RealmController {
 
@@ -62,9 +67,9 @@ public class RealmController {
         ArrayList<Category> categories = getCategories();
 
         ArrayList<Ad> ads = new ArrayList();
-        ads.add(new Ad(1, "AD 1", "Torino", categories.get(0), 45.0651384, 7.65677679, "Via Pier Carlo Boggio, 59 Torino (TO)", Ad.EVENT_TYPE_FREE, new Date(), MyDateUtil.getDateWithDayAdded(2), R.drawable.serata, "34859652", "Descrizione serata 1"));
-        ads.add(new Ad(2, "AD 2", "Torino", categories.get(1), 45.06572584470129, 7.655252894873001, "Corso Francesco Ferrucci, 101, Torino (TO)", Ad.EVENT_TYPE_FREE, new Date(), MyDateUtil.getDateWithDayAdded(4), R.drawable.serata, "34859652", "Descrizione serata 2"));
-        ads.add(new Ad(3, "AD 3", "Milano", categories.get(2), 45.47195911140795, 9.187788963317871, "Via Brera, 28, Milano (MI)", Ad.EVENT_TYPE_PAID, new Date(), MyDateUtil.getDateWithDayAdded(3), R.drawable.serata, "34859652", "Descrizione serata 2"));
+        ads.add(new Ad(1, "AD 1", "Torino", categories.get(0), 45.0651384, 7.65677679, "Via Pier Carlo Boggio, 59 Torino (TO)", Ad.EVENT_TYPE_FREE, new Date(), MyDateUtil.getDateWithDayAdded(2), "34859652", "Descrizione serata 1", new RealmList(new AdImage(MyImageUtil.getURLForResource(R.drawable.serata), MyImageUtil.convertBitmapToByte(BitmapFactory.decodeResource(AppController.getInstance().getResources(), R.drawable.serata)), 1))));
+        ads.add(new Ad(2, "AD 2", "Torino", categories.get(1), 45.06572584470129, 7.655252894873001, "Corso Francesco Ferrucci, 101, Torino (TO)", Ad.EVENT_TYPE_FREE, new Date(), MyDateUtil.getDateWithDayAdded(4), "34859652", "Descrizione serata 2", new RealmList(new AdImage(MyImageUtil.getURLForResource(R.drawable.concerto), MyImageUtil.convertBitmapToByte(BitmapFactory.decodeResource(AppController.getInstance().getResources(), R.drawable.concerto)), 1))));
+        ads.add(new Ad(3, "AD 3", "Milano", categories.get(2), 45.47195911140795, 9.187788963317871, "Via Brera, 28, Milano (MI)", Ad.EVENT_TYPE_PAID, new Date(), MyDateUtil.getDateWithDayAdded(3), "34859652", "Descrizione serata 2", new RealmList(new AdImage(MyImageUtil.getURLForResource(R.drawable.apericena), MyImageUtil.convertBitmapToByte(BitmapFactory.decodeResource(AppController.getInstance().getResources(), R.drawable.apericena)), 1))));
 
         // write on realm refreshed data
         realm.copyToRealmOrUpdate(ads);

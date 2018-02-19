@@ -167,6 +167,11 @@ public class AdCreateActivity extends BaseActivity implements ImageChooserListen
             return;
         }
 
+        if (images.size() == 0){
+            MyDialogUtil.showDialog(this, "Immagine", "Selezionare almeno 1 immagine!");
+            return;
+        }
+
         Ad adToCreate = new Ad();
 
         adToCreate.setName(editTextName.getText().toString());
@@ -179,7 +184,6 @@ public class AdCreateActivity extends BaseActivity implements ImageChooserListen
         adToCreate.setHashTags(editTextHashTags.getText().toString());
         adToCreate.setCity(editTextCity.getText().toString());
         adToCreate.setAddress(editTextAddress.getText().toString());
-        adToCreate.setImage(R.drawable.background_discoteca);
         adToCreate.setNumberPhone(editTextPhone.getText().toString());
         adToCreate.setDescriptionEvent(editTextDescrizion.getText().toString());
 

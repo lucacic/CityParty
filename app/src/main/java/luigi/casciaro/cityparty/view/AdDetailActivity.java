@@ -36,7 +36,7 @@ public class AdDetailActivity extends BaseActivity implements AdActionsContract 
         MyUtil.setToolbar(this, ad.getName());
 
         // set
-        findViewById(R.id.imageView).setBackground(ContextCompat.getDrawable(this, ad.getImage()));
+        ((ImageView) findViewById(R.id.imageView)).setImageBitmap(ad.getImage());
         ((TextView) findViewById(R.id.textViewTitle)).setText(ad.getDescriptionEvent());
         ((TextView) findViewById(R.id.textViewTitle2)).setText(ad.getDescriptionEvent());
         ((TextView) findViewById(R.id.textViewTextDetails)).setText(ad.getEventType_toString());
