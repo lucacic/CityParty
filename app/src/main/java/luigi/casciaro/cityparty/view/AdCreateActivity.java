@@ -253,10 +253,10 @@ public class AdCreateActivity extends BaseActivity implements ImageChooserListen
 
             if (chosenImage != null) {
 
-                Bitmap bitmap = MyImageUtil.getBitmapFromPath(chosenImage.getFileThumbnail());
+                Bitmap bitmap = MyImageUtil.getBitmapFromPath(chosenImage.getFilePathOriginal());
                 byte[] bytes = MyImageUtil.convertBitmapToByte(bitmap);
 
-                images.add(new AdImage(chosenImage.getFileThumbnail(), bytes, imageIndex));
+                images.add(new AdImage(chosenImage.getFilePathOriginal(), bytes, imageIndex));
 
                 // increment
                 imageIndex = imageIndex + 1;

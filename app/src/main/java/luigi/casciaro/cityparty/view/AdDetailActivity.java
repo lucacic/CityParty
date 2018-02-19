@@ -13,18 +13,23 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.synnapps.carouselview.CarouselView;
+
 import io.realm.Realm;
 import luigi.casciaro.cityparty.AppController;
 import luigi.casciaro.cityparty.R;
 import luigi.casciaro.cityparty.contract.AdActionsContract;
 import luigi.casciaro.cityparty.model.Ad;
+import luigi.casciaro.cityparty.util.MyImageUtil;
 import luigi.casciaro.cityparty.util.MyUtil;
 
 public class AdDetailActivity extends BaseActivity implements AdActionsContract {
 
+    private static final int MAKE_CALL_PERMISSION_REQUEST_CODE = 1;
+
     Ad ad;
     boolean isLiked = false;
-    private static final int MAKE_CALL_PERMISSION_REQUEST_CODE = 1;
+    CarouselView carouselView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +40,11 @@ public class AdDetailActivity extends BaseActivity implements AdActionsContract 
 
         MyUtil.setToolbar(this, ad.getName());
 
+        carouselView = findViewById(R.id.carouselView);
+        carouselView.setPageCount(ad.getImages().size());
+        carouselView.setImageListener((position, imageView) -> imageView.setImageBitmap(MyImageUtil.getBitmapFromByteArray(ad.getImages().get(position).getImage())));
+
         // set
-        ((ImageView) findViewById(R.id.imageView)).setImageBitmap(ad.getImage());
         ((TextView) findViewById(R.id.textViewTitle)).setText(ad.getDescriptionEvent());
         ((TextView) findViewById(R.id.textViewTitle2)).setText(ad.getDescriptionEvent());
         ((TextView) findViewById(R.id.textViewTextDetails)).setText(ad.getEventType_toString());

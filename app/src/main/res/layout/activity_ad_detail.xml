@@ -24,13 +24,16 @@
             app:expandedTitleTextAppearance="@android:color/transparent"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-            <ImageView
-                android:id="@+id/imageView"
+            <com.synnapps.carouselview.CarouselView
+                android:id="@+id/carouselView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:contentDescription="@string/app_name"
-                android:scaleType="centerCrop"
-                app:layout_collapseMode="parallax" />
+                app:fillColor="#FFFFFFFF"
+                app:pageColor="#00000000"
+                app:radius="6dp"
+                app:slideInterval="2000"
+                app:strokeColor="#FF777777"
+                app:strokeWidth="1dp"/>
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
