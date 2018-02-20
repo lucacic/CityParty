@@ -70,7 +70,7 @@ public class AdAdapter extends RecyclerView.Adapter<ViewHolderShopAdapter> imple
             // current clicked
             AppController.getInstance().setCurrentAd(items.get(position));
             // go to
-            AppController.getInstance().startActivity(new Intent(AppController.getInstance(), AdDetailActivity.class));
+            AppController.getInstance().startActivity(new Intent(AppController.getInstance(), AdDetailActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
         });
         // smile
         viewHolder.imageViewSmile.setOnClickListener(v -> owner.onSmilePressed(items.get(position)));
