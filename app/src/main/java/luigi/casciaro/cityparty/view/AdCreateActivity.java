@@ -178,8 +178,7 @@ public class AdCreateActivity extends BaseActivity implements ImageChooserListen
         adToCreate.setCategory(categorySelected);
         adToCreate.setCategoryName(categorySelected.getName());
         adToCreate.setEventType(typologySelected);
-        adToCreate.setDateFrom(date);
-        adToCreate.setDateTo(date);
+        adToCreate.setDate(date);
         adToCreate.setImages(images);
         adToCreate.setHashTags(editTextHashTags.getText().toString());
         adToCreate.setCity(editTextCity.getText().toString());
@@ -193,7 +192,6 @@ public class AdCreateActivity extends BaseActivity implements ImageChooserListen
     String filePath;
     ImageChooserManager imageChooserManager;
     RealmList<AdImage> images = new RealmList();
-    int imageIndex = 1;
     boolean isCamera = true;
     Category categorySelected;
     String typologySelected = Ad.EVENT_TYPE_FREE;
@@ -215,7 +213,8 @@ public class AdCreateActivity extends BaseActivity implements ImageChooserListen
         ButterKnife.bind(this);
 
         // fix exposed beyond app through ClipData.Item.getUri() by ImageChooserManager
-        StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder(); StrictMode.setVmPolicy(builder.build());
+        StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+        StrictMode.setVmPolicy(builder.build());
 
         categories = RealmController.getCategories();
         // array
@@ -237,9 +236,13 @@ public class AdCreateActivity extends BaseActivity implements ImageChooserListen
 
         // create date start picker
         if (MyUtil.isBrokenSamsungDevice()) {
-            datePicker = new DatePickerDialog(this, android.R.style.Theme_Holo_Light_Dialog, dateDriverDobPickerListener, Integer.parseInt(dateArray[2]), Integer.parseInt(dateArray[1]) - 1, Integer.parseInt(dateArray[0]));
+            datePicker = new DatePickerDialog(this, android.R.style.Theme_Holo_Light_Dialog,
+                    dateDriverDobPickerListener, Integer.parseInt(dateArray[2]),
+                    Integer.parseInt(dateArray[1]) - 1, Integer.parseInt(dateArray[0]));
         } else {
-            datePicker = new DatePickerDialog(this, dateDriverDobPickerListener, Integer.parseInt(dateArray[2]), Integer.parseInt(dateArray[1]) - 1, Integer.parseInt(dateArray[0]));
+            datePicker = new DatePickerDialog(this, dateDriverDobPickerListener,
+                    Integer.parseInt(dateArray[2]), Integer.parseInt(dateArray[1]) - 1,
+                    Integer.parseInt(dateArray[0]));
         }
     }
 
@@ -256,10 +259,7 @@ public class AdCreateActivity extends BaseActivity implements ImageChooserListen
                 Bitmap bitmap = MyImageUtil.getBitmapFromPath(chosenImage.getFilePathOriginal());
                 byte[] bytes = MyImageUtil.convertBitmapToByte(bitmap);
 
-                images.add(new AdImage(chosenImage.getFilePathOriginal(), bytes, imageIndex));
-
-                // increment
-                imageIndex = imageIndex + 1;
+                images.add(new AdImage(chosenImage.getFilePathOriginal(), bytes));
 
                 if(isCamera) {
                     textViewCamera.setText("Immagini selezionate");
@@ -283,7 +283,8 @@ public class AdCreateActivity extends BaseActivity implements ImageChooserListen
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK && (requestCode == ChooserType.REQUEST_PICK_PICTURE || requestCode == ChooserType.REQUEST_CAPTURE_PICTURE)) {
+        if (resultCode == RESULT_OK && (requestCode == ChooserType.REQUEST_PICK_PICTURE ||
+                requestCode == ChooserType.REQUEST_CAPTURE_PICTURE)) {
             try {
                 imageChooserManager.submit(requestCode, data);
             }catch (Exception e){
@@ -298,7 +299,8 @@ public class AdCreateActivity extends BaseActivity implements ImageChooserListen
      */
     @Override
     public void onAdCreated() {
-        MyDialogUtil.showDialog_finishActivityOneButton(this, "Annuncio creato!", "Il tuo annuncio è stato creato con successo");
+        MyDialogUtil.showDialog_finishActivityOneButton(this,
+                "Annuncio creato!", "Il tuo annuncio è stato creato con successo");
     }
 
     @Override
@@ -308,7 +310,8 @@ public class AdCreateActivity extends BaseActivity implements ImageChooserListen
         });
     }
 
-    DatePickerDialog.OnDateSetListener dateDriverDobPickerListener = (view, year, monthOfYear, dayOfMonth) -> {
+    DatePickerDialog.OnDateSetListener dateDriverDobPickerListener = (view, year, monthOfYear,
+                                                                      dayOfMonth) -> {
 
         if (dayOfMonth < 10) {
             dateArray[0] = "0" + String.valueOf(dayOfMonth);

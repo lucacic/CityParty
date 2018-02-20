@@ -6,18 +6,24 @@ import io.realm.annotations.PrimaryKey;
 public class AdImage extends RealmObject {
 
     @PrimaryKey
+    int id;
     String path;
-
     byte[] image;
-    int index;
 
     public AdImage() {}
 
-    public AdImage(String path, byte[] image, int index) {
+    public AdImage(String path, byte[] image, int id) {
+        this.id = id;
         this.path = path;
         this.image = image;
-        this.index = index;
     }
+
+    public AdImage(String path, byte[] image) {
+        this.path = path;
+        this.image = image;
+    }
+
+    public void setId(int id){this.id = id;}
 
     public String getPath() {
         return path;
@@ -38,12 +44,12 @@ public class AdImage extends RealmObject {
     @Override
     public String toString() {
         return "{" +
-                "index='" + index + '\'' +
+                "id='" + id + '\'' +
                 "path='" + path + '\'' +
                 '}';
     }
 
-    public int getIndex() {
-        return index;
+    public int getId() {
+        return id;
     }
 }

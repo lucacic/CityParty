@@ -29,10 +29,7 @@ public class Ad extends RealmObject {
     public String eventType;
     public String hashTags;
     public String city;
-    public Date dateFrom;
-    public String dateFromString;
-    public Date dateTo;
-    public String dateToString;
+    public Date date;
     public RealmList<AdImage> images;
     public String numberPhone;
     public String descriptionEvent;
@@ -40,7 +37,9 @@ public class Ad extends RealmObject {
     // default for Realm
     public Ad() {}
 
-    public Ad(int id, String name, String city, Category category, Double latitude, Double longitude, String address, String eventType, Date dateFrom, Date dateTo, String numberPhone, String descriptionEvent, RealmList<AdImage> images) {
+    public Ad(int id, String name, String city, Category category, Double latitude, Double longitude,
+              String address, String eventType, Date date, String numberPhone, String
+                      descriptionEvent, RealmList<AdImage> images) {
         this.id = id;
         this.name = name;
         this.category = category;
@@ -50,11 +49,8 @@ public class Ad extends RealmObject {
         this.longitude = longitude;
         this.address = address;
         this.eventType = eventType;
-        this.dateFrom = dateFrom;
-        this.dateTo = dateTo;
+        this.date = date;
         this.images = images;
-        this.dateFromString = MyDateUtil.getddMMYYYYFromDate(dateFrom);
-        this.dateToString = MyDateUtil.getddMMYYYYFromDate(dateTo);
         this.numberPhone = numberPhone;
         this.descriptionEvent = descriptionEvent ;
     }
@@ -119,35 +115,21 @@ public class Ad extends RealmObject {
         return "";
     }
 
-    public String getEventTypePaid() {
-        return AppController.getInstance().getString(R.string.text_paid);
-    }
-
-    public String getEventTypeFree() {
-        return AppController.getInstance().getString(R.string.text_free);
-    }
-
-    public Date getDateFrom() {
-        return dateFrom;
-    }
-
-    public Date getDateTo() {
-        return dateTo;
+    public Date getDate() {
+        return date;
     }
 
     public String getDate_toString() {
-        String from = MyDateUtil.getddMMYYYYFromDate(dateFrom);
-        String to = MyDateUtil.getddMMYYYYFromDate(dateTo);
-
-        return "Dal " + from + " al " + to;
+        String from = MyDateUtil.getddMMYYYYFromDate(date);
+        return "Il: "+from;
     }
 
     public String getMonthName() {
-        return MyDateUtil.getMonthName(dateFrom).toUpperCase();
+        return MyDateUtil.getMonthName(date).toUpperCase();
     }
 
     public String getDay() {
-        return MyDateUtil.getDateArrayFromDate(dateFrom)[0];
+        return MyDateUtil.getDateArrayFromDate(date)[0];
     }
 
     public Bitmap getImage() {
@@ -198,14 +180,8 @@ public class Ad extends RealmObject {
         this.eventType = eventType;
     }
 
-    public void setDateFrom(Date dateFrom) {
-        this.dateFrom = dateFrom;
-        this.dateFromString = MyDateUtil.getddMMYYYYFromDate(dateFrom);
-    }
-
-    public void setDateTo(Date dateTo) {
-        this.dateTo = dateTo;
-        this.dateToString = MyDateUtil.getddMMYYYYFromDate(dateTo);
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public String getHashTags() {
@@ -234,8 +210,7 @@ public class Ad extends RealmObject {
                 ", longitude=" + longitude +
                 ", address='" + address + '\'' +
                 ", eventType='" + eventType + '\'' +
-                ", dateFrom=" + dateFrom +
-                ", dateTo=" + dateTo +
+                ", dateFrom=" + date+
                 '}';
     }
 }

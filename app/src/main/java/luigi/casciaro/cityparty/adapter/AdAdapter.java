@@ -41,7 +41,6 @@ public class AdAdapter extends RecyclerView.Adapter<ViewHolderShopAdapter> imple
     @Override
     public void onBindViewHolder(final ViewHolderShopAdapter viewHolder, int position) {
 
-        final boolean[] isFavourite = {MainActivity.userLogged.isInFavourites(items.get(position))};
         final boolean[] isLiked = {MainActivity.userLogged.isInLiked(items.get(position))};
 
         viewHolder.textViewName.setText(items.get(position).getFirstRow());

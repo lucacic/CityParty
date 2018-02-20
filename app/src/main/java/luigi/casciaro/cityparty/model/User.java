@@ -14,7 +14,6 @@ public class User extends RealmObject {
 
     public String password;
     public String type;
-    public RealmList<Ad> favourites;
     public RealmList<Ad> liked;
     public RealmList<Ad> published;
 
@@ -27,34 +26,8 @@ public class User extends RealmObject {
         this.type = type;
     }
 
-    public RealmList<Ad> getFavourites() {
-        return favourites;
-    }
-
     public RealmList<Ad> getLiked() {
         return liked;
-    }
-
-    public boolean isInFavourites(Ad ad1) {
-        for (Ad ad : favourites) {
-            if(ad.getId() == ad1.getId()) return true;
-        }
-        return false;
-    }
-
-    public void removeFromFavourites(Ad ad1) {
-        if(favourites != null && favourites.size() > 0){
-
-            Ad adToRemove = null;
-
-            for (Ad ad : favourites) {
-                if(ad.getId() == ad1.getId()){
-                    adToRemove = ad;
-                }
-            }
-
-            if(adToRemove != null) favourites.remove(adToRemove);
-        }
     }
 
     public boolean isInLiked(Ad ad1) {
@@ -101,7 +74,6 @@ public class User extends RealmObject {
                 "username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", type='" + type + '\'' +
-                ", favourites=" + favourites +
                 ", liked=" + liked +
                 ", published=" + published +
                 '}';

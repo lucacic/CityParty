@@ -90,10 +90,10 @@ public class AppController extends Application {
     public static int getFiltersActiveNumber() {
         int out = 0;
 
-        if(isFilterByEventTypeSetted()) out = out + 1;
-        if(isFilterByDateSetted()) out = out + 1;
-        if(isFilterByCategorySetted()) out = out + 1;
-        if(isFilterByCitySetted()) out = out + 1;
+        if(isFilterByEventTypeSetted()) out++;
+        if(isFilterByDateSetted()) out++;
+        if(isFilterByCategorySetted()) out++;
+        if(isFilterByCitySetted()) out++;
 
         return out;
     }

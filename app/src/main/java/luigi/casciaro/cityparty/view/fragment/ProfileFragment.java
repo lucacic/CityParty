@@ -48,9 +48,6 @@ public class ProfileFragment extends Fragment implements AdActionsContract {
     @BindView(R.id.recyclerViewAdPublished)
     RecyclerView recyclerViewAdPublished;
 
-    @BindView(R.id.recyclerViewAdFavourites)
-    RecyclerView recyclerViewAdFavourites;
-
     @BindView(R.id.recyclerViewAdLiked)
     RecyclerView recyclerViewAdLiked;
 
@@ -66,6 +63,8 @@ public class ProfileFragment extends Fragment implements AdActionsContract {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
+        // Annotate fields with @BindView and a view ID for Butter Knife to find and automatically
+        // cast the corresponding view in your layout
         ButterKnife.bind(this, view);
         viewCreated = true;
         return view;
@@ -75,12 +74,6 @@ public class ProfileFragment extends Fragment implements AdActionsContract {
         adapterPublished = new AdAdapter(new ArrayList(MainActivity.userLogged.getPublished()), false, this);
         recyclerViewAdPublished.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         recyclerViewAdPublished.setAdapter(adapterPublished);
-    }
-
-    private void loadAdsFavourites(){
-        adapterFavourites = new AdAdapter(new ArrayList(MainActivity.userLogged.getFavourites()), false, this);
-        recyclerViewAdFavourites.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
-        recyclerViewAdFavourites.setAdapter(adapterFavourites);
     }
 
     private void loadAdsLiked(){
@@ -129,10 +122,8 @@ public class ProfileFragment extends Fragment implements AdActionsContract {
             MyUtil.print("USER_LOGGED IS A CUSTOMER");
         }
 
-        loadAdsFavourites();
         loadAdsLiked();
 
-        MyUtil.print("USER_LOGGED FAV -> " + MainActivity.userLogged.getFavourites().toString());
         MyUtil.print("USER_LOGGED LIK -> " + MainActivity.userLogged.getLiked().toString());
     }
 
