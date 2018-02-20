@@ -30,12 +30,10 @@ public class RealmController {
         realm = Realm.getDefaultInstance();
 
         realm.executeTransaction((realm) -> {
-            // delete all
-            Realm.getDefaultInstance().deleteAll();
-            // init
-            // addUsers();
+
+            //addUsers();
             addCategories();
-            // addAds();
+            //addAds();
         });
 
     }

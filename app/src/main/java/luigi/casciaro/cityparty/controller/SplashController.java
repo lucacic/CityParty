@@ -14,7 +14,7 @@ public class SplashController {
         }
         else {
             // init Realm
-            RealmController.initRealm();
+            //RealmController.initRealm();
             owner.onUserNotLogged();
         }
     }

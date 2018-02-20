@@ -46,7 +46,7 @@ public class AdDetailActivity extends BaseActivity implements AdActionsContract 
         carouselView.setImageListener((position, imageView) -> imageView.setImageBitmap(MyImageUtil.getBitmapFromByteArray(ad.getImages().get(position).getImage())));
 
         // set
-        ((TextView) findViewById(R.id.textViewTitle)).setText(ad.getDescriptionEvent());
+        ((TextView) findViewById(R.id.textViewTitle)).setText(ad.getName());
         ((TextView) findViewById(R.id.textViewTitle2)).setText(ad.getDescriptionEvent());
         ((TextView) findViewById(R.id.textViewTextDetails)).setText(ad.getEventType_toString());
         ((TextView) findViewById(R.id.textViewAddress)).setText(ad.getAddress());
