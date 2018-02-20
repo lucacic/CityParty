@@ -176,4 +176,18 @@ public class RealmController {
 
         owner.onAdsLoaded(items);
     }
+
+    public static int getAdsLikedInCounter(Ad ad) {
+
+        int count = 0;
+        RealmQuery<User> query = Realm.getDefaultInstance().where(User.class);
+        RealmResults<User> result = query.findAll();
+
+        for (int i = 0; i < result.size(); i++) {
+            if(result.get(i).isInLiked(ad))
+                count = count + 1;
+        }
+
+        return count;
+    }
 }

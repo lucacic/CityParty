@@ -19,6 +19,7 @@ import io.realm.Realm;
 import luigi.casciaro.cityparty.AppController;
 import luigi.casciaro.cityparty.R;
 import luigi.casciaro.cityparty.contract.AdActionsContract;
+import luigi.casciaro.cityparty.controller.RealmController;
 import luigi.casciaro.cityparty.model.Ad;
 import luigi.casciaro.cityparty.util.MyImageUtil;
 import luigi.casciaro.cityparty.util.MyUtil;
@@ -54,7 +55,7 @@ public class AdDetailActivity extends BaseActivity implements AdActionsContract 
         ((TextView) findViewById(R.id.textViewDate)).setText(ad.getDate_toString());
         ((TextView) findViewById(R.id.textViewMese)).setText(ad.getMonthName());
         ((TextView) findViewById(R.id.textViewGiorno)).setText(ad.getDay());
-        ((TextView) findViewById(R.id.textViewLikedBy)).setText("68"); // TODO: 19/02/18
+        ((TextView) findViewById(R.id.textViewLikedBy)).setText(String.valueOf(RealmController.getAdsLikedInCounter(ad)));
 
         // favourite?
         if(MainActivity.userLogged.isInLiked(ad)){
