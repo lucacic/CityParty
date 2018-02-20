@@ -54,6 +54,10 @@ android {
     }
 }
 
+realm {
+    syncEnabled = true;
+}
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     // standard google

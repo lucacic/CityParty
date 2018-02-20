@@ -1,10 +1,14 @@
 package luigi.casciaro.cityparty;
 
 import android.app.Application;
+import android.os.StrictMode;
 
 import java.util.Date;
 
 import io.realm.Realm;
+import io.realm.SyncConfiguration;
+import io.realm.SyncCredentials;
+import io.realm.SyncUser;
 import luigi.casciaro.cityparty.model.Ad;
 import luigi.casciaro.cityparty.model.Category;
 import luigi.casciaro.cityparty.util.MyDateUtil;
@@ -23,6 +27,11 @@ public class AppController extends Application {
     public static final String ISO_FORMAT_OUTPUT = "dd/MM/yyyy";
 
     private static AppController mInstance;
+
+    private String address = "192.168.1.121:9080";
+    private String realmUrl = "realm://"+address+"/~/cityparty";
+    private String serverUrl = "http://"+address;
+
 
     // global temp values
     private static String filterByEventType;
@@ -43,8 +52,21 @@ public class AppController extends Application {
                 .build()
         );
 
+        int SDK_INT = android.os.Build.VERSION.SDK_INT;
+        if (SDK_INT > 8) {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+                    .permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
+
         // realm database
         Realm.init(this);
+
+        SyncCredentials myCredentials = SyncCredentials.usernamePassword("Luigi", "luigi", false);
+        SyncUser user = SyncUser.login(myCredentials, serverUrl);
+        SyncConfiguration config = new SyncConfiguration.Builder(user, realmUrl)
+                .build();
+        Realm.setDefaultConfiguration(config);
     }
 
     public static void resetFilter(){
