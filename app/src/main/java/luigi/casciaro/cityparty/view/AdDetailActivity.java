@@ -47,8 +47,8 @@ public class AdDetailActivity extends BaseActivity implements AdActionsContract 
 
         // set
         ((TextView) findViewById(R.id.textViewTitle)).setText(ad.getName());
-        ((TextView) findViewById(R.id.textViewTitle2)).setText(ad.getDescriptionEvent());
-        ((TextView) findViewById(R.id.textViewTextDetails)).setText(ad.getEventType_toString());
+        ((TextView) findViewById(R.id.textViewTitle2)).setText(ad.getHashTags());
+        ((TextView) findViewById(R.id.textViewTextDetails)).setText(ad.getDescriptionEvent());
         ((TextView) findViewById(R.id.textViewAddress)).setText(ad.getAddress());
         ((TextView) findViewById(R.id.textViewAddress2)).setText(ad.getAddress());
         ((TextView) findViewById(R.id.textViewPhone)).setText(ad.getNumberPhone());
