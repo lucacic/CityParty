@@ -3,8 +3,10 @@ package luigi.casciaro.cityparty.view.fragment;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
@@ -23,6 +25,10 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import butterknife.BindView;
@@ -120,13 +126,37 @@ public class HomeFragment extends Fragment implements AdsContract, AdActionsCont
 
     @Override
     public void onSharePressed(Ad ad) {
-        Intent myIntent = new Intent(Intent.ACTION_SEND);
-        myIntent.setType("text/plain");
-        String shareBody = ad.getDescriptionEvent();
-        String shareSub ="Subject here";
-        myIntent.putExtra(Intent.EXTRA_SUBJECT, shareSub);
-        myIntent.putExtra(Intent.EXTRA_TEXT, shareBody);
-        startActivity(Intent.createChooser(myIntent, "Share using"));
+        Uri bmpUri = getLocalBitmapUri(ad.getImage()); // see previous remote images section
+        // Construct share intent as described above based on bitmap
+
+        Intent shareIntent = new Intent();
+        //shareIntent.setPackage("com.whatsapp");
+        shareIntent.setAction(Intent.ACTION_SEND);
+        shareIntent.putExtra(Intent.EXTRA_TEXT, ad.getDescriptionEvent() );
+        shareIntent.putExtra(Intent.EXTRA_STREAM, bmpUri);
+        shareIntent.setType("image/*");
+        shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        startActivity(Intent.createChooser(shareIntent, "Share Opportunity"));
+
+    }
+
+    private Uri getLocalBitmapUri(Bitmap bmp) {
+        Uri bmpUri = null;
+        File file = new File(getActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES), "share_image_" + System.currentTimeMillis() + ".png");
+        FileOutputStream out = null;
+        try {
+            out = new FileOutputStream(file);
+            bmp.compress(Bitmap.CompressFormat.PNG, 90, out);
+            try {
+                out.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            bmpUri = Uri.fromFile(file);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return bmpUri;
     }
 
     @Override

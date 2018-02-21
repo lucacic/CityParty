@@ -28,7 +28,7 @@ public class AppController extends Application {
 
     private static AppController mInstance;
 
-    private String address = "192.168.1.121:9080";
+    private String address = "192.168.43.171:9080";
     private String realmUrl = "realm://"+address+"/~/cityparty";
     private String serverUrl = "http://"+address;
 
